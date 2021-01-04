@@ -10,21 +10,21 @@ public class BinarySearch {
      * @param args
      */
     public static void main(String[] args) {
-//        System.out.println("递归二分法：" + recursionBinarySearch(data, 8, 0, data.length - 1));
-//
-//        System.out.println("循环二分法：" + loopBinarySearch(data, 8));
-//
-//        System.out.println("给定值第一次出现的位置：" + firstMathBinarySearch(data, 8));
-//
-//        System.out.println("给定值最后一次出现的位置：" + lastMathBinarySearch(data, 8));
-//
-//        System.out.println("第一个比给定值大的值出现的位置：" + firstBiggerThanMathBinarySearch(data, 8));
-//
-//        System.out.println("最后一个比给定值小的值出现的位置：" + firstLessThanMathBinarySearch(data, 8));
+        System.out.println("递归二分法：" + recursionBinarySearch(data, 8, 0, data.length - 1));
+
+        System.out.println("循环二分法：" + loopBinarySearch(data, 8));
+
+        System.out.println("给定值第一次出现的位置：" + firstMathBinarySearch(data, 8));
+
+        System.out.println("给定值最后一次出现的位置：" + lastMathBinarySearch(data, 8));
+
+        System.out.println("第一个比给定值大的值出现的位置：" + firstBiggerThanMathBinarySearch(data, 8));
+
+        System.out.println("最后一个比给定值小的值出现的位置：" + firstLessThanMathBinarySearch(data, 8));
 
         int[] circleArray = new int[]{4, 5, 6, 7, 0, 1, 2};
 
-        System.out.println("循环数组二分法：" + circleBinarySearch(circleArray, 1));
+        System.out.println("循环数组二分法：" + circleBinarySearch(circleArray, 0));
 
     }
 
@@ -184,19 +184,25 @@ public class BinarySearch {
                 return mid;
             }
 
-            // 不含折点的一侧，一定是单调递增的
-            if (data[mid] < data[low]) {
-                // 折点在左边
+            if (data[low] < data[mid]) {
 
-                if (data[low] >= data[mid] && data[mid] >= target) {
+                // 折点在右边
 
+                if (data[low] <= target && target < data[mid]) {
+                    high = mid - 1;
                 } else {
-
+                    low = mid + 1;
                 }
 
-
             } else {
-                // 折点在右边
+
+                // 折点在左边
+
+                if (data[mid] < target && target <= data[high]) {
+                    low = mid + 1;
+                } else {
+                    high = mid - 1;
+                }
 
             }
 
